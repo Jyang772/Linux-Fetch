@@ -1,5 +1,6 @@
 #include <string>
 #include <stdlib.h>
+#include <algorithm>
 using namespace std;
 
 
@@ -65,8 +66,10 @@ class Commands
 	void Input()
 	{
 		string url;
+		do{
 		cout << "$: " << endl;
 		cin >> command;
+		transform(command.begin(), command.end(), command.begin(), ::tolower);
 		
 		if(command == "Fetch" || command == "fetch" || command == "f")
 		{	cout << "Please Enter URL: " << endl;
@@ -75,7 +78,7 @@ class Commands
 			Search Web(url);
 			Web.parseText();
 		}
-		if(command == "exit" || command == "Exit")
+		}while(command != "exit");
 		return;
 	}
 };
